@@ -128,11 +128,6 @@
         </service>
 
         <service
-            android:name=".touch.TouchNonUiService"
-            android:permission="TouchNonUiService">
-        </service>
-
-        <service
             android:name=".gestures.BackTapService"
             android:permission="BackTapService">
         </service>
