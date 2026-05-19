@@ -45,6 +45,7 @@ on boot
     chown cameraserver cameraserver /sys/class/leds/led:torch_1/brightness
     chown cameraserver cameraserver /sys/class/leds/led:torch_2/brightness
     chown cameraserver cameraserver /sys/class/leds/led:torch_3/brightness
+    chown cameraserver cameraserver /sys/class/leds/led:switch_0/brightness
 
 on fs
     mkdir /mnt/vendor/persist/haptics 0755 system system
