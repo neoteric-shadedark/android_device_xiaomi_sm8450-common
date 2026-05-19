@@ -23,13 +23,13 @@ source "${HELPER}"
 function vendor_imports() {
     cat <<EOF >>"$1"
         "device/xiaomi/sm8450-common",
-        "hardware/qcom/display",
-        "hardware/qcom/display/gralloc",
-        "hardware/qcom/display/libdebug",
+        "hardware/qcom-caf/sm8450/display",
+        "hardware/qcom-caf/sm8450/display/gralloc",
+        "hardware/qcom-caf/sm8450/display/libdebug",
         "hardware/xiaomi",
-        "vendor/qcom/common/vendor/adreno/s",
+        "vendor/qcom/common/vendor/adreno-s",
         "vendor/qcom/common/vendor/display/5.10",
-        "vendor/qcom/common/vendor/media/5.10",
+        "vendor/qcom/common/vendor/media",
         "vendor/qcom/common/vendor/perf",
         "vendor/qcom/common/vendor/wlan",
         "vendor/xiaomi/sm8450-common",

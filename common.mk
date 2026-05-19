@@ -8,22 +8,16 @@
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
-ifeq ($(TARGET_BUILD_VARIANT),user)
-POSTINSTALL_FS_TYPE := erofs
-else
-POSTINSTALL_FS_TYPE := ext4
-endif
-
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=$(POSTINSTALL_FS_TYPE) \
+    FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_vendor=true \
     POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-    FILESYSTEM_TYPE_vendor=$(POSTINSTALL_FS_TYPE) \
+    FILESYSTEM_TYPE_vendor=ext4 \
     POSTINSTALL_OPTIONAL_vendor=true
 
 PRODUCT_PACKAGES += \
@@ -203,8 +197,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
 
 # Health
-$(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
-
 PRODUCT_PACKAGES += \
     android.hardware.health-service.xiaomi \
     android.hardware.health-service.xiaomi_recovery \
@@ -387,6 +379,16 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.sensors.enable.mag_filter=true
+
+# Shims
+PRODUCT_PACKAGES += \
+    libstagefright_foundation-v33 \
+    libaudioroute-v34 \
+    libutils-v32 \
+    libutils-shim \
+    libhidlbase_shim \
+    libprocessgroup_shim \
+    libcrypto_shim
 
 # Shipping API
 PRODUCT_SHIPPING_API_LEVEL := 31
